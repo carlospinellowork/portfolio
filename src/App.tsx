@@ -2,6 +2,9 @@ import { motion } from 'framer-motion';
 import { Suspense, lazy, useEffect, useState } from "react";
 import GradualSpacing from './components/magicui/gradual-spacing';
 import { Progress } from "./components/ui/progress";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 const HomePage = lazy(() => new Promise(resolve => {
   setTimeout(() => {
@@ -57,9 +60,11 @@ function App() {
   };
 
   return (
+    <QueryClientProvider client={queryClient}>
     <Suspense fallback={<LoadingPageAnimation />}>
       <HomePage />
     </Suspense>
+    </QueryClientProvider>
   );
 }
 
