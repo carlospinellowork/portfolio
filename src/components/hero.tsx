@@ -1,11 +1,12 @@
 "use client"
 
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
-import { ArrowDown, Github, Linkedin, Mail, Download, ChevronDown } from "lucide-react"
+import { ArrowDown, ChevronDown, Download, Github, Linkedin, Mail } from "lucide-react"
 import { useRef } from "react"
 import { Link } from "react-scroll"
-import { Button } from "@/components/ui/button"
+import AvatarPhoto from "../assets/avatarPhoto.jpeg"
 import DotPattern from "./magicui/dot-pattern"
 import WordRotate from "./magicui/word-rotate"
 
@@ -68,7 +69,7 @@ const Hero = () => {
             className="w-24 h-24 mx-auto mb-8 rounded-full bg-gradient-to-r from-gray-600 to-gray-400 p-1"
           >
             <img
-              src="/public/heroimg.jfif"
+              src={AvatarPhoto}
               alt="Carlos Eduardo"
               className="w-full h-full rounded-full object-cover"
             />
