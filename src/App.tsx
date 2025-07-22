@@ -1,18 +1,21 @@
-import { motion } from 'framer-motion';
-import { Suspense, lazy, useEffect, useState } from "react";
-import GradualSpacing from './components/magicui/gradual-spacing';
-import { Progress } from "./components/ui/progress";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { motion } from "framer-motion";
+import { Suspense, lazy, useEffect, useState } from "react";
+import GradualSpacing from "./components/magicui/gradual-spacing";
+import { Progress } from "./components/ui/progress";
 
 const queryClient = new QueryClient();
 
-const HomePage = lazy(() => new Promise(resolve => {
-  setTimeout(() => {
-    import("./page/index").then(module => {
-      resolve(module);
-    });
-  }, 6000);
-}));
+const HomePage = lazy(
+  () =>
+    new Promise<{ default: React.ComponentType<unknown> }>((resolve) => {
+      setTimeout(() => {
+        import("./page/index").then((module) => {
+          resolve({ default: module.default });
+        });
+      }, 6000);
+    })
+);
 
 function App() {
   const LoadingPageAnimation = () => {
@@ -35,23 +38,25 @@ function App() {
     }, []);
 
     return (
-      <motion.div
-        className="h-screen w-full flex flex-col items-center justify-center bg-zinc-100"
-      >
-        <motion.h1
-          className="text-4xl font-bold font-bebas">
+      <motion.div className="flex flex-col items-center justify-center w-full h-screen bg-zinc-100">
+        <motion.h1 className="text-4xl font-bold font-bebas">
           {progress === 100 ? (
             <GradualSpacing
-              className="text-slate-900 text-5xl font-bold font-bebas"
+              className="text-5xl font-bold text-slate-900 font-bebas"
               text="Bem vindo"
             />
-          ) : <p className='text-slate-900 text-5xl font-bold font-bebas'>Carregando...</p>}
+          ) : (
+            <p className="text-5xl font-bold text-slate-900 font-bebas">
+              Carregando...
+            </p>
+          )}
         </motion.h1>
-        <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: progress === 100 ? 0 : 1 }}
-        transition={{ duration: 0.5 }}
-        className='flex items-center w-1/2 space-x-4'>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: progress === 100 ? 0 : 1 }}
+          transition={{ duration: 0.5 }}
+          className="flex items-center w-1/2 space-x-4"
+        >
           <Progress value={progress} className="w-full mt-4" />
           <p className="text-sm font-semibold">{progress}%</p>
         </motion.div>
@@ -61,9 +66,9 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-    <Suspense fallback={<LoadingPageAnimation />}>
-      <HomePage />
-    </Suspense>
+      <Suspense fallback={<LoadingPageAnimation />}>
+        <HomePage />
+      </Suspense>
     </QueryClientProvider>
   );
 }
