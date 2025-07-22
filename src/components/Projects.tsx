@@ -1,11 +1,20 @@
-"use client"
+import { useRef } from "react";
 
-import { motion } from "framer-motion"
-import { useRef } from "react"
-import { ExternalLink, Star, GitFork, Calendar, Code, AlertCircle } from "lucide-react"
-import { useGitHubProjects, type ProjectCard } from "../hooks/useGithubProject"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+import { motion } from "framer-motion";
+
+import {
+  AlertCircle,
+  Calendar,
+  Code,
+  ExternalLink,
+  GitFork,
+  Star,
+} from "lucide-react";
+
+import { useGitHubProjects, type ProjectCard } from "../hooks/useGithubProject";
+
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
 const ProjectSkeleton = () => (
   <div className="animate-pulse">
@@ -13,9 +22,15 @@ const ProjectSkeleton = () => (
       <span className="text-zinc-400">Carregando projeto...</span>
     </div>
   </div>
-)
+);
 
-const ProjectCardComponent = ({ project, index }: { project: ProjectCard; index: number }) => {
+const ProjectCardComponent = ({
+  project,
+  index,
+}: {
+  project: ProjectCard;
+  index: number;
+}) => {
   const cardVariants = {
     initial: { opacity: 0, y: 50 },
     animate: {
@@ -27,12 +42,12 @@ const ProjectCardComponent = ({ project, index }: { project: ProjectCard; index:
         ease: "easeOut",
       },
     },
-  }
+  };
 
   return (
     <motion.div
       variants={cardVariants}
-      className="group relative overflow-hidden rounded-xl bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/50"
+      className="relative overflow-hidden border group rounded-xl bg-zinc-800/50 backdrop-blur-sm border-zinc-700/50"
     >
       <div className="relative overflow-hidden">
         {project.video ? (
@@ -43,14 +58,19 @@ const ProjectCardComponent = ({ project, index }: { project: ProjectCard; index:
             muted
             playsInline
             className="w-full h-[300px] md:h-[400px] object-cover transition-transform duration-500 group-hover:scale-105"
-            onError={(e) => console.error("❌ Erro no vídeo:", e, project.video)}
+            onError={(e) =>
+              console.error("❌ Erro no vídeo:", e, project.video)
+            }
           />
         ) : (
           <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 h-[300px] md:h-[400px] w-full flex flex-col items-center justify-center gap-4 border border-dashed border-zinc-600">
             <Code className="w-16 h-16 text-zinc-400" />
-            <h3 className="text-lg font-semibold text-zinc-200">{project.displayName}</h3>
-            <p className="text-zinc-400 text-sm text-center px-4">
-              {project.description || "Projeto focado em lógica e funcionalidade"}
+            <h3 className="text-lg font-semibold text-zinc-200">
+              {project.displayName}
+            </h3>
+            <p className="px-4 text-sm text-center text-zinc-400">
+              {project.description ||
+                "Projeto focado em lógica e funcionalidade"}
             </p>
             {project.language && (
               <Badge variant="secondary" className="bg-zinc-700 text-zinc-200">
@@ -63,21 +83,32 @@ const ProjectCardComponent = ({ project, index }: { project: ProjectCard; index:
         <motion.div
           initial={{ opacity: 0 }}
           whileHover={{ opacity: 1 }}
-          className="absolute inset-0 bg-black/80 backdrop-blur-sm flex flex-col justify-end p-6 text-white"
+          className="absolute inset-0 flex flex-col justify-end p-6 text-white bg-black/80 backdrop-blur-sm"
         >
           <div className="space-y-3">
             <h3 className="text-xl font-bold">{project.displayName}</h3>
 
-            {project.description && <p className="text-sm text-gray-300 line-clamp-2">{project.description}</p>}
+            {project.description && (
+              <p className="text-sm text-gray-300 line-clamp-2">
+                {project.description}
+              </p>
+            )}
 
             <div className="flex flex-wrap gap-2">
               {project.language && (
-                <Badge variant="secondary" className="bg-zinc-700 text-zinc-200">
+                <Badge
+                  variant="secondary"
+                  className="bg-zinc-700 text-zinc-200"
+                >
                   {project.language}
                 </Badge>
               )}
               {project.topics?.slice(0, 3).map((topic) => (
-                <Badge key={topic} variant="outline" className="border-zinc-600 text-zinc-300">
+                <Badge
+                  key={topic}
+                  variant="outline"
+                  className="border-zinc-600 text-zinc-300"
+                >
                   {topic}
                 </Badge>
               ))}
@@ -101,7 +132,7 @@ const ProjectCardComponent = ({ project, index }: { project: ProjectCard; index:
             <div className="flex gap-2 pt-2">
               <Button
                 size="sm"
-                className="bg-white text-black hover:bg-gray-200"
+                className="text-black bg-white hover:bg-gray-200"
                 onClick={() => window.open(project.html_url, "_blank")}
               >
                 <ExternalLink className="w-4 h-4 mr-1" />
@@ -111,7 +142,7 @@ const ProjectCardComponent = ({ project, index }: { project: ProjectCard; index:
                 <Button
                   size="sm"
                   variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-black bg-transparent"
+                  className="text-white bg-transparent border-white hover:bg-white hover:text-black"
                   onClick={() => window.open(project.homepage!, "_blank")}
                 >
                   Demo Live
@@ -122,12 +153,17 @@ const ProjectCardComponent = ({ project, index }: { project: ProjectCard; index:
         </motion.div>
       </div>
     </motion.div>
-  )
-}
+  );
+};
 
 const Projects = () => {
-  const ref = useRef(null)
-  const { data: projects = [], isLoading, isError, error } = useGitHubProjects()
+  const ref = useRef(null);
+  const {
+    data: projects = [],
+    isLoading,
+    isError,
+    error,
+  } = useGitHubProjects();
 
   const containerVariants = {
     initial: { opacity: 0 },
@@ -138,39 +174,50 @@ const Projects = () => {
         staggerChildren: 0.1,
       },
     },
-  }
+  };
 
   if (isLoading) {
     return (
       <section className="flex flex-col items-center justify-center flex-1 w-full py-16 bg-zinc-900">
-        <h1 className="mb-12 font-bold text-6xl md:text-7xl text-slate-50 text-center">CARREGANDO PROJETOS...</h1>
-        <div className="grid w-full grid-cols-1 gap-6 p-6 mt-12 md:grid-cols-2 lg:grid-cols-2 max-w-6xl">
+        <h1 className="mb-12 text-6xl font-bold text-center md:text-7xl text-slate-50">
+          CARREGANDO PROJETOS...
+        </h1>
+        <div className="grid w-full max-w-6xl grid-cols-1 gap-6 p-6 mt-12 md:grid-cols-2 lg:grid-cols-2">
           {Array.from({ length: 6 }).map((_, i) => (
             <ProjectSkeleton key={i} />
           ))}
         </div>
       </section>
-    )
+    );
   }
 
   if (isError) {
     return (
       <section className="flex flex-col items-center justify-center flex-1 w-full py-16 bg-zinc-900">
-        <div className="text-center space-y-4 max-w-2xl px-6">
-          <AlertCircle className="w-16 h-16 text-red-400 mx-auto" />
-          <h1 className="text-4xl font-bold text-red-400">Ops! Algo deu errado</h1>
+        <div className="max-w-2xl px-6 space-y-4 text-center">
+          <AlertCircle className="w-16 h-16 mx-auto text-red-400" />
+          <h1 className="text-4xl font-bold text-red-400">
+            Ops! Algo deu errado
+          </h1>
           <p className="text-gray-400">
-            {error instanceof Error ? error.message : "Erro ao carregar projetos do GitHub"}
+            {error instanceof Error
+              ? error.message
+              : "Erro ao carregar projetos do GitHub"}
           </p>
           <div className="space-y-2">
-            <Button onClick={() => window.location.reload()} className="bg-white text-black hover:bg-gray-200">
+            <Button
+              onClick={() => window.location.reload()}
+              className="text-black bg-white hover:bg-gray-200"
+            >
               Tentar Novamente
             </Button>
-            <p className="text-xs text-gray-500">Verifique o console do navegador para mais detalhes</p>
+            <p className="text-xs text-gray-500">
+              Verifique o console do navegador para mais detalhes
+            </p>
           </div>
         </div>
       </section>
-    )
+    );
   }
 
   return (
@@ -182,28 +229,34 @@ const Projects = () => {
       className="flex flex-col items-center justify-center flex-1 w-full py-16 bg-zinc-900"
     >
       <motion.h1
-        className="mb-12 font-bold text-6xl md:text-7xl text-slate-50 text-center"
+        className="mb-12 text-5xl font-bold text-center md:text-6xl text-slate-50"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
         PROJETOS SELECIONADOS
-        <span className="block text-2xl md:text-3xl text-gray-400 mt-2">({projects.length} repositórios)</span>
+        <span className="block mt-2 text-2xl text-gray-400 md:text-3xl">
+          ({projects.length} repositórios)
+        </span>
       </motion.h1>
 
-      <div className="grid w-full grid-cols-1 gap-8 p-6 mt-12 md:grid-cols-2 lg:grid-cols-2 max-w-6xl">
+      <div className="grid w-full max-w-6xl grid-cols-1 gap-8 p-6 mt-12 md:grid-cols-2 lg:grid-cols-2">
         {projects.map((project, index) => (
-          <ProjectCardComponent key={project.id} project={project} index={index} />
+          <ProjectCardComponent
+            key={project.id}
+            project={project}
+            index={index}
+          />
         ))}
       </div>
 
       {projects.length === 0 && (
-        <div className="text-center text-gray-400 mt-8">
+        <div className="mt-8 text-center text-gray-400">
           <p>Nenhum projeto encontrado com os critérios especificados.</p>
         </div>
       )}
     </motion.section>
-  )
-}
+  );
+};
 
-export default Projects
+export default Projects;

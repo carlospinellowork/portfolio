@@ -1,11 +1,19 @@
-"use client"
+import { motion } from "framer-motion";
 
-import { motion } from "framer-motion"
-import { ArrowUp, Github, Linkedin, Mail, Heart, Code, Coffee } from "lucide-react"
-import { Link } from "react-scroll"
+import {
+  ArrowUp,
+  Code,
+  Coffee,
+  Github,
+  Heart,
+  Linkedin,
+  Mail,
+} from "lucide-react";
+
+import { Link } from "react-scroll";
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear()
+  const currentYear = new Date().getFullYear();
 
   const socialLinks = [
     {
@@ -26,14 +34,14 @@ const Footer = () => {
       url: "mailto:carlos@exemplo.com",
       color: "hover:text-green-400",
     },
-  ]
+  ];
 
   const quickLinks = [
     { name: "Início", to: "hero" },
     { name: "Sobre", to: "about" },
     { name: "Projetos", to: "projects" },
     { name: "Contato", to: "contact" },
-  ]
+  ];
 
   return (
     <motion.footer
@@ -41,15 +49,15 @@ const Footer = () => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
-      className="w-full bg-zinc-900 border-t border-zinc-800/50 relative overflow-hidden"
+      className="relative w-full overflow-hidden border-t bg-zinc-900 border-zinc-800/50"
     >
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0 bg-gradient-to-r from-gray-500/10 to-gray-500/10" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.1),transparent_50%)]" />
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+      <div className="relative z-10 max-w-6xl px-6 py-12 mx-auto">
+        <div className="grid grid-cols-1 gap-8 mb-8 md:grid-cols-3">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -57,11 +65,14 @@ const Footer = () => {
             viewport={{ once: true }}
             className="space-y-4"
           >
-            <h3 className="text-2xl font-bold text-white">{"<Carlos Eduardo />"}</h3>
-            <p className="text-zinc-400 leading-relaxed">
-              Desenvolvedor Frontend apaixonado por criar experiências digitais incríveis e interfaces modernas.
+            <h3 className="text-2xl font-bold text-white">
+              {"<Carlos Eduardo />"}
+            </h3>
+            <p className="leading-relaxed text-zinc-400">
+              Desenvolvedor Frontend apaixonado por criar experiências digitais
+              incríveis e interfaces modernas.
             </p>
-            <div className="flex items-center gap-2 text-zinc-400 text-sm">
+            <div className="flex items-center gap-2 text-sm text-zinc-400">
               <span>Feito com</span>
               <motion.div
                 animate={{ scale: [1, 1.2, 1] }}
@@ -95,12 +106,19 @@ const Footer = () => {
                     to={link.to}
                     smooth
                     duration={500}
-                    className="text-zinc-400 hover:text-white transition-colors cursor-pointer inline-flex items-center group"
+                    className="inline-flex items-center transition-colors cursor-pointer text-zinc-400 hover:text-white group"
                   >
-                    <motion.span whileHover={{ x: 5 }} transition={{ duration: 0.2 }}>
+                    <motion.span
+                      whileHover={{ x: 5 }}
+                      transition={{ duration: 0.2 }}
+                    >
                       {link.name}
                     </motion.span>
-                    <motion.span initial={{ opacity: 0, x: -10 }} whileHover={{ opacity: 1, x: 0 }} className="ml-1">
+                    <motion.span
+                      initial={{ opacity: 0, x: -10 }}
+                      whileHover={{ opacity: 1, x: 0 }}
+                      className="ml-1"
+                    >
                       →
                     </motion.span>
                   </Link>
@@ -119,7 +137,7 @@ const Footer = () => {
             <h4 className="text-lg font-semibold text-white">Conecte-se</h4>
             <div className="flex flex-col space-y-3">
               {socialLinks.map((social, index) => {
-                const IconComponent = social.icon
+                const IconComponent = social.icon;
                 return (
                   <motion.a
                     key={social.name}
@@ -134,9 +152,11 @@ const Footer = () => {
                     viewport={{ once: true }}
                   >
                     <IconComponent className="w-5 h-5" />
-                    <span className="group-hover:underline underline-offset-4">{social.name}</span>
+                    <span className="group-hover:underline underline-offset-4">
+                      {social.name}
+                    </span>
                   </motion.a>
-                )
+                );
               })}
             </div>
 
@@ -151,11 +171,14 @@ const Footer = () => {
                 to="hero"
                 smooth
                 duration={500}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-gray-500/20 to-gray-500/20 border border-gray-500/30 rounded-lg text-white hover:from-gray-500/30 hover:to-gray-500/30 transition-all cursor-pointer group"
+                className="inline-flex items-center gap-2 px-4 py-2 text-white transition-all border rounded-lg cursor-pointer bg-gradient-to-r from-gray-500/20 to-gray-500/20 border-gray-500/30 hover:from-gray-500/30 hover:to-gray-500/30 group"
               >
                 <motion.div
                   animate={{ y: [0, -3, 0] }}
-                  transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Number.POSITIVE_INFINITY,
+                  }}
                 >
                   <ArrowUp className="w-4 h-4" />
                 </motion.div>
@@ -172,14 +195,14 @@ const Footer = () => {
           viewport={{ once: true }}
           className="pt-8 border-t border-zinc-800/50"
         >
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex items-center gap-4 text-zinc-400 text-sm">
+          <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+            <div className="flex items-center gap-4 text-sm text-zinc-400">
               <span>© {currentYear} Carlos Eduardo.</span>
               <span className="hidden md:inline">•</span>
               <span>Todos os direitos reservados.</span>
             </div>
 
-            <div className="flex items-center gap-4 text-zinc-400 text-sm">
+            <div className="flex items-center gap-4 text-sm text-zinc-400">
               <motion.div
                 whileHover={{ rotate: 360 }}
                 transition={{ duration: 0.5 }}
@@ -192,10 +215,10 @@ const Footer = () => {
           </div>
         </motion.div>
 
-        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-px bg-gradient-to-r from-transparent via-gray-500/50 to-transparent" />
+        <div className="absolute top-0 w-32 h-px transform -translate-x-1/2 left-1/2 bg-gradient-to-r from-transparent via-gray-500/50 to-transparent" />
       </div>
     </motion.footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

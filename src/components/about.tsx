@@ -1,6 +1,7 @@
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
+import { useRef } from "react";
+
 import { motion, useInView } from "framer-motion";
+
 import {
   Award,
   Calendar,
@@ -11,9 +12,13 @@ import {
   Target,
   Zap,
 } from "lucide-react";
-import { useRef } from "react";
-import PhotoPerfil from "../assets/perfilphoto.jpeg";
+
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
 import { MarqueeDemo } from "./marquee";
+
+import PhotoPerfil from "../assets/perfilphoto.jpeg";
+
 const About = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { margin: "-100px" });
