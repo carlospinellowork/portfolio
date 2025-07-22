@@ -1,20 +1,14 @@
-"use client";
-
+import { AnimatePresence, motion, useInView, type Variants } from "framer-motion";
 import { useRef } from "react";
-import { AnimatePresence, motion, useInView, Variants } from "framer-motion";
 
 interface BlurFadeProps {
   children: React.ReactNode;
   className?: string;
-  variant?: {
-    hidden: { y: number };
-    visible: { y: number };
-  };
+  variant?: Variants;
   duration?: number;
   delay?: number;
   yOffset?: number;
   inView?: boolean;
-  inViewMargin?: string;
   blur?: string;
 }
 
@@ -26,17 +20,30 @@ export default function BlurFade({
   delay = 0,
   yOffset = 6,
   inView = false,
-  inViewMargin = "-50px",
   blur = "6px",
 }: BlurFadeProps) {
   const ref = useRef(null);
-  const inViewResult = useInView(ref, { once: true, margin: inViewMargin });
+
+  const inViewResult = useInView(ref, {
+    once: true,
+    margin: "0px 0px -50px 0px",
+  });
+
   const isInView = !inView || inViewResult;
+
   const defaultVariants: Variants = {
-    hidden: { y: yOffset, opacity: 0, filter: `blur(${blur})` },
-    visible: { y: -yOffset, opacity: 1, filter: `blur(0px)` },
+    hidden: {
+      y: yOffset,
+      opacity: 0,
+      filter: `blur(${blur})`,
+    },
+    visible: {
+      y: -yOffset,
+      opacity: 1,
+      filter: "blur(0px)",
+    },
   };
-  const combinedVariants = variant || defaultVariants;
+
   return (
     <AnimatePresence>
       <motion.div
@@ -44,7 +51,7 @@ export default function BlurFade({
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         exit="hidden"
-        variants={combinedVariants}
+        variants={variant || defaultVariants}
         transition={{
           delay: 0.04 + delay,
           duration,
