@@ -1,84 +1,77 @@
-import { useQuery } from "@tanstack/react-query"
+import { useQuery } from "@tanstack/react-query";
 
 export type GitHubRepo = {
-  id: number
-  name: string
-  html_url: string
-  description: string | null
-  language: string | null
-  created_at: string
-  updated_at: string
-  stargazers_count: number
-  forks_count: number
-  topics: string[]
-  homepage: string | null
-  private: boolean
-  fork: boolean
-}
+  id: number;
+  name: string;
+  html_url: string;
+  description: string | null;
+  language: string | null;
+  created_at: string;
+  updated_at: string;
+  stargazers_count: number;
+  forks_count: number;
+  topics: string[];
+  homepage: string | null;
+  private: boolean;
+  fork: boolean;
+};
 
 export type ProjectCard = GitHubRepo & {
-  video: string
-  displayName: string
-}
+  video: string;
+  displayName: string;
+};
 
-const GITHUB_USERNAME = "carlospinellowork"
+const GITHUB_USERNAME = "carlospinellowork";
 
 const projectVideos: Record<string, string> = {
-  "faqs-app": "/faqs-app.mp4",
   "pg-links": "/pg-links.mp4",
   "mks-ecommerce": "/mks-ecommercevideo.mp4",
   drinksOnline: "/cardapio-online.mp4",
-}
+};
 
 const formatRepoName = (name: string): string => {
   return name
     .replace(/[-_]/g, " ")
     .replace(/\b\w/g, (char) => char.toUpperCase())
-    .trim()
-}
+    .trim();
+};
 
 const fetchGitHubProjects = async (): Promise<ProjectCard[]> => {
-  console.log("🔄 Iniciando busca de projetos...")
-
   try {
-    const url = `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&direction=desc&per_page=20`
-    console.log("📡 URL da API:", url)
+    const url = `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&direction=desc&per_page=20`;
+    console.log("📡 URL da API:", url);
 
     const response = await fetch(url, {
       headers: {
         Accept: "application/vnd.github.v3+json",
         "User-Agent": "Portfolio-App",
       },
-    })
-
-    console.log("📊 Status da resposta:", response.status)
+    });
 
     if (!response.ok) {
-      const errorText = await response.text()
-      console.error("❌ Erro na API:", errorText)
-      throw new Error(`GitHub API Error: ${response.status}`)
+      const errorText = await response.text();
+      console.error("❌ Erro na API:", errorText);
+      throw new Error(`GitHub API Error: ${response.status}`);
     }
 
-    const repos: GitHubRepo[] = await response.json()
-    console.log("📦 Repositórios recebidos:", repos.length)
-    console.log(
-      "🔍 Primeiros 3 repos:",
-      repos.slice(0, 3).map((r) => ({ name: r.name, language: r.language })),
-    )
+    const repos: GitHubRepo[] = await response.json();
 
     const filteredRepos = repos
       .filter((repo) => {
-        const isValid = !repo.fork && !repo.private && new Date(repo.created_at).getFullYear() >= 2022
+        const isValid =
+          !repo.fork &&
+          !repo.private &&
+          new Date(repo.created_at).getFullYear() >= 2022;
 
         if (!isValid) {
           console.log(`⏭️ Repo ${repo.name} filtrado:`, {
             fork: repo.fork,
             private: repo.private,
             year: new Date(repo.created_at).getFullYear(),
-          })
+          });
         }
 
-        return isValid
+        return isValid;
       })
       .slice(0, 6)
       .map((repo) => ({
@@ -86,20 +79,14 @@ const fetchGitHubProjects = async (): Promise<ProjectCard[]> => {
         topics: repo.topics || [],
         video: projectVideos[repo.name] || "",
         displayName: formatRepoName(repo.name),
-      }))
+      }));
 
-    console.log("✅ Projetos processados:", filteredRepos.length)
-    console.log(
-      "📋 Projetos finais:",
-      filteredRepos.map((p) => ({ name: p.name, displayName: p.displayName })),
-    )
-
-    return filteredRepos
+    return filteredRepos;
   } catch (error) {
-    console.error("💥 Erro ao buscar projetos:", error)
-    throw error
+    console.error("💥 Erro ao buscar projetos:", error);
+    throw error;
   }
-}
+};
 
 export const useGitHubProjects = () => {
   return useQuery({
@@ -109,5 +96,5 @@ export const useGitHubProjects = () => {
     retry: 2,
     retryDelay: 1000,
     refetchOnWindowFocus: false,
-  })
-}
+  });
+};

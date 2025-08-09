@@ -45,6 +45,7 @@ const Footer = () => {
 
   return (
     <motion.footer
+      id="footer"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
@@ -209,7 +210,7 @@ const Footer = () => {
                 className="flex items-center gap-1"
               >
                 <Code className="w-4 h-4" />
-                <span>Desenvolvido com Next.js</span>
+                <span>Desenvolvido com vite e react</span>
               </motion.div>
             </div>
           </div>
