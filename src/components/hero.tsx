@@ -3,14 +3,7 @@ import { useRef } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-scroll";
 
-import {
-  ArrowDown,
-  ChevronDown,
-  Download,
-  Github,
-  Linkedin,
-  Mail,
-} from "lucide-react";
+import { ArrowDown, ChevronDown, Github, Linkedin, Mail } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -58,6 +51,7 @@ const Hero = () => {
 
   return (
     <motion.section
+      id="hero"
       ref={ref}
       variants={containerVariants}
       initial="initial"
@@ -125,15 +119,6 @@ const Hero = () => {
               <ChevronDown className="w-5 h-5 ml-2" />
             </Button>
           </Link>
-
-          <Button
-            size="lg"
-            variant="outline"
-            className="px-8 py-3 text-gray-300 transition-all duration-300 bg-transparent border-gray-600 rounded-full hover:bg-gray-800 hover:text-white hover:scale-105"
-          >
-            <Download className="w-5 h-5 mr-2" />
-            Download CV
-          </Button>
         </motion.div>
 
         <motion.div variants={itemVariants} className="flex gap-6 mb-16">

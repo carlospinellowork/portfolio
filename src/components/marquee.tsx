@@ -1,5 +1,4 @@
 import Marquee from "@/components/magicui/marquee";
-
 import { cn } from "@/lib/utils";
 
 const languagesSpecialist = [
@@ -55,24 +54,24 @@ const ReviewCard = ({ icon, name }: { icon: string; name: string }) => {
   return (
     <figure
       className={cn(
-        "relative w-48 cursor-pointer overflow-hidden rounded-xl p-4",
+        "relative w-44 sm:w-48 cursor-pointer overflow-hidden rounded-lg p-3 transition-colors duration-200",
         // light styles
-        " bg-zinc-50 hover:bg-gray-50/[.15] hover:text-zinc-50",
+        "bg-zinc-100 hover:bg-zinc-200/40",
         // dark styles
-        "dark:bg-zinc-800 dark:hover:bg-zinc-800/[.15] dark:text-zinc-50"
+        "dark:bg-zinc-800/80 dark:hover:bg-zinc-700/60 dark:text-zinc-50"
       )}
     >
-      <div className="flex flex-row items-center justify-center gap-2">
+      <div className="flex items-center justify-center gap-2">
         <img
-          className="rounded-md"
-          width="32"
-          height="32"
+          className="rounded-md shadow-sm"
+          width="28"
+          height="28"
           alt={name}
           src={icon}
         />
-        <div className="flex flex-col">
-          <figcaption className="text-sm font-medium">{name}</figcaption>
-        </div>
+        <figcaption className="text-xs font-medium tracking-wide sm:text-sm">
+          {name}
+        </figcaption>
       </div>
     </figure>
   );
@@ -80,12 +79,14 @@ const ReviewCard = ({ icon, name }: { icon: string; name: string }) => {
 
 export function MarqueeDemo() {
   return (
-    <div className="relative flex h-[100px] w-full flex-col items-center justify-center overflow-hidden">
+    <div className="relative flex h-[120px] w-full items-center justify-center overflow-hidden bg-transparent">
       <Marquee pauseOnHover className="[--duration:20s]">
         {firstRow.map((review) => (
           <ReviewCard key={review.name} {...review} />
         ))}
       </Marquee>
+      <div className="absolute inset-y-0 left-0 w-16 pointer-events-none bg-gradient-to-r from-zinc-900 to-transparent dark:from-zinc-900"></div>
+      <div className="absolute inset-y-0 right-0 w-16 pointer-events-none bg-gradient-to-l from-zinc-900 to-transparent dark:from-zinc-900"></div>
     </div>
   );
 }

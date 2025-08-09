@@ -85,6 +85,7 @@ const About = () => {
 
   return (
     <motion.section
+      id="about"
       ref={ref}
       variants={containerVariants}
       initial="initial"
@@ -186,15 +187,45 @@ const About = () => {
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                Olá! Sou um desenvolvedor frontend com{" "}
-                <span className="font-semibold text-white">
-                  2+ anos de experiência
-                </span>
-                , apaixonado por criar interfaces funcionais e modernas. Atuo
-                com HTML, CSS, JavaScript e frameworks como{" "}
-                <span className="font-semibold text-white">
-                  React, Vue, Angular e Next.js
-                </span>
+                <p>
+                  Sou{" "}
+                  <span className="font-semibold text-white">
+                    desenvolvedor frontend
+                  </span>
+                  com mais de{" "}
+                  <span className="font-semibold text-white">
+                    2 anos de experiência
+                  </span>
+                  criando{" "}
+                  <span className="font-semibold text-white">
+                    interfaces modernas, responsivas
+                  </span>
+                  e{" "}
+                  <span className="font-semibold text-white">
+                    de alta performance
+                  </span>
+                  . Especializado em{" "}
+                  <span className="font-semibold text-white">
+                    HTML5, CSS3 e JavaScript (ES6+)
+                  </span>
+                  , atuo com frameworks como{" "}
+                  <span className="font-semibold text-white">
+                    React, Next.js, Vue.js e Angular.js
+                  </span>
+                  , além de ferramentas como{" "}
+                  <span className="font-semibold text-white">
+                    Styled-components, Tailwind CSS e Framer Motion
+                  </span>
+                  para criar experiências fluidas e atrativas. Meu objetivo é{" "}
+                  <span className="font-semibold text-white">
+                    transformar ideias em produtos digitais
+                  </span>
+                  que unam{" "}
+                  <span className="font-semibold text-white">
+                    estética, funcionalidade e desempenho
+                  </span>
+                  .
+                </p>
                 .
               </motion.p>
 

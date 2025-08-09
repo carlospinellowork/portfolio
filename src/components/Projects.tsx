@@ -46,6 +46,7 @@ const ProjectCardComponent = ({
 
   return (
     <motion.div
+      id="projects"
       variants={cardVariants}
       className="relative overflow-hidden border group rounded-xl bg-zinc-800/50 backdrop-blur-sm border-zinc-700/50"
     >
@@ -241,13 +242,15 @@ const Projects = () => {
       </motion.h1>
 
       <div className="grid w-full max-w-6xl grid-cols-1 gap-8 p-6 mt-12 md:grid-cols-2 lg:grid-cols-2">
-        {projects.map((project, index) => (
-          <ProjectCardComponent
-            key={project.id}
-            project={project}
-            index={index}
-          />
-        ))}
+        {projects
+          .filter((project) => project.name !== "faqs-app")
+          .map((project, index) => (
+            <ProjectCardComponent
+              key={project.id}
+              project={project}
+              index={index}
+            />
+          ))}
       </div>
 
       {projects.length === 0 && (
