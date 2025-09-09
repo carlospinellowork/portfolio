@@ -77,7 +77,11 @@ https://portfoliocadu.vercel.app/
 
 ## 📸 Preview
 
-![Preview do Portfolio](./public/images/preview.gif) <!-- Você pode substituir por um GIF real do projeto -->
+(<div>
+    <a href="https://www.loom.com/share/021f1ff01d16495cba8099e326d8d00f">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/021f1ff01d16495cba8099e326d8d00f-f8d5e69d0899a1d1-full-play.gif">
+    </a>
+  </div>) <!-- Você pode substituir por um GIF real do projeto -->
 
 ## 📞 Contato
 
