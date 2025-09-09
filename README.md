@@ -81,7 +81,7 @@ https://portfoliocadu.vercel.app/
 
 ## 📞 Contato
 
-- **LinkedIn**: [Carlos Pinello](www.linkedin.com/in/carlos-eduardo-9ba041156)
+- **LinkedIn**: www.linkedin.com/in/carlos-eduardo-9ba041156
 - **Email**: carlos.pinello@outlook.com
 
 ## 📄 Licença
