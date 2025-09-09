@@ -1,30 +1,93 @@
-# React + TypeScript + Vite
+# Portfolio - Carlos Pinel
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Um portfolio moderno e responsivo desenvolvido com Next.js, apresentando meus projetos, habilidades e experiências profissionais.
 
-Currently, two official plugins are available:
+![Status](https://img.shields.io/badge/Status-Concluído-brightgreen) 
+![Tecnologia](https://img.shields.io/badge/Next.js-14.0-black) 
+![Deploy](https://img.shields.io/badge/Deploy-Vercel-black)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📋 Sobre o Projeto
 
-## Expanding the ESLint configuration
+Este portfolio foi criado para exibir meus trabalhos e habilidades como desenvolvedor. Com design limpo e moderno, o site apresenta seções intuitivas que permitem aos visitantes conhecerem minha trajetória, projetos e formas de contato.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## ✨ Funcionalidades
 
-- Configure the top-level `parserOptions` property like this:
+- ✅ Design responsivo para todos os dispositivos
+- ✅ Navegação suave entre seções
+- ✅ Galeria de projetos com detalhes
+- ✅ Modo claro e escuro
+- ✅ Animações e transições suaves
+- ✅ Formulário de contato funcional
+- ✅ SEO otimizado
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+## 🛠️ Tecnologias Utilizadas
+
+- **Framework**: Next.js 14
+- **Estilização**: CSS Modules / Tailwind CSS
+- **Deploy**: Vercel
+- **Animações**: Framer Motion
+- **Ícones**: React Icons
+
+## 🚀 Como Executar o Projeto
+
+### Pré-requisitos
+
+- Node.js (versão 16.8 ou superior)
+- npm ou yarn
+
+### Instalação
+
+1. Clone o repositório:
+```bash
+git clone https://github.com/carlospinellowork/portfolio.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+2. Acesse a pasta do projeto:
+```bash
+cd portfolio
+```
+
+3. Instale as dependências:
+```bash
+npm install
+# ou
+yarn install
+```
+
+4. Execute o servidor de desenvolvimento:
+```bash
+npm run dev
+# ou
+yarn dev
+```
+
+5. Abra [http://localhost:3000](http://localhost:3000) no seu navegador.
+
+## 📦 Scripts Disponíveis
+
+- `dev` - Executa o servidor de desenvolvimento
+- `build` - Constrói a aplicação para produção
+- `start` - Inicia o servidor de produção
+- `lint` - Executa o ESLint para análise de código
+
+## 🌐 Deploy
+
+O projeto está implantado na Vercel e pode ser acessado através do link:
+https://portfoliocadu.vercel.app/
+
+## 📸 Preview
+
+![Preview do Portfolio](./public/images/preview.gif) <!-- Você pode substituir por um GIF real do projeto -->
+
+## 📞 Contato
+
+- **LinkedIn**: [Carlos Pinello](www.linkedin.com/in/carlos-eduardo-9ba041156)
+- **Email**: carlos.pinello@outlook.com
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+---
+
+⭐️ Desenvolvido por [Carlos Pinello](https://github.com/carlospinellowork)
